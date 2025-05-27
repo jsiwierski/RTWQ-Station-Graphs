@@ -23,23 +23,52 @@
       border: 1px solid #ddd;
       padding: 10px;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      max-width: 420px;
     }
     .img-block img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
     }
   </style>
 </head>
 <body>
   <h1>Water Quality Graphs</h1>
-  <div class="img-container">
-    <div class="img-block">
-      <img src="https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer&ts_id=26198010&from=2025-05-20" alt="Graph 1">
-      <p>ts_id: 26198010</p>
-    </div>
-    <div class="img-block">
-      <img src="https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer&ts_id=27558010&from=2025-05-20" alt="Graph 2">
-      <p>ts_id: 27558010</p>
-    </div>
+  <div class="img-container" id="graphs">
+    <noscript>Please enable JavaScript to view the graphs.</noscript>
   </div>
-</bod
+
+  <script>
+    const ts_ids = [
+      26198010,
+      27558010,
+      27388010
+    ];
+
+    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+
+    // Calculate the date 7 days ago in YYYY-MM-DD format
+    const today = new Date();
+    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
+    const dateStr = sevenDaysAgo.toISOString().split("T")[0];
+
+    const container = document.getElementById("graphs");
+
+    ts_ids.forEach(id => {
+      const imgUrl = `${baseUrl}&ts_id=${id}&from=${dateStr}`;
+      const block = document.createElement("div");
+      block.className = "img-block";
+
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = `Graph for ts_id ${id}`;
+
+      const label = document.createElement("p");
+      label.textContent = `ts_id: ${id}`;
+
+      block.appendChild(img);
+      block.appendChild(label);
+      container.appendChild(block);
+    });
+  </script>
+</body>
+</html>

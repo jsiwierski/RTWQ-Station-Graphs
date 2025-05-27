@@ -35,31 +35,28 @@
   <div class="img-container" id="graphs"></div>
 
   <script>
-    // Replace or expand this list with your ts_id values
     const ts_ids = [
       27558010,
       26198010,
-      // Add more ts_ids like 27388010, etc.
+      27388010
+      // Add more ts_id numbers as needed
     ];
 
-    // Compute date 7 days ago in YYYY-MM-DD format
+    // Get date 7 days ago in YYYY-MM-DD format
     const today = new Date();
     const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
       .toISOString().split('T')[0];
 
-    // Build image URLs and add them to the page
+    const container = document.getElementById("graphs");
     const base = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
 
-    const container = document.getElementById("graphs");
-
     ts_ids.forEach(ts_id => {
-      const url = `${base}&ts_id=${ts_id}&from=${sevenDaysAgo}`;
-
+      const imgUrl = `${base}&ts_id=${ts_id}&from=${sevenDaysAgo}`;
       const block = document.createElement("div");
       block.className = "img-block";
 
       const img = document.createElement("img");
-      img.src = url;
+      img.src = imgUrl;
       img.alt = `Graph for ts_id ${ts_id}`;
 
       const label = document.createElement("div");
@@ -68,3 +65,9 @@
       label.style.marginTop = "10px";
 
       block.appendChild(img);
+      block.appendChild(label);
+      container.appendChild(block);
+    });
+  </script>
+</body>
+</html>

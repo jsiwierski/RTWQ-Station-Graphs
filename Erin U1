@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Erin U1 - Water Quality Graphs</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    .img-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .img-block {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      max-width: 420px;
+    }
+    .img-block img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Erin U1 - Water Quality Graphs</h1>
+  <div class="img-container" id="graphs">
+    <noscript>Please enable JavaScript to view the graphs.</noscript>
+  </div>
+
+  <script>
+    const ts_ids = [
+      27388010,
+      27364010,
+      27413010,
+      27470010,
+      27490010,
+      27529010,
+      27554010,
+      27490010
+    ];
+
+    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+    const today = new Date();
+    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
+    const dateStr = sevenDaysAgo.toISOString().split("T")[0];
+
+    const container = document.getElementById("graphs");
+
+    ts_ids.forEach(id => {
+      const imgUrl = `${baseUrl}&ts_id=${id}&from=${dateStr}`;
+      const block = document.createElement("div");
+      block.className = "img-block";
+
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = `Graph for ts_id ${id}`;
+
+      const label = document.createElement("p");
+      label.textContent = `ts_id: ${id}`;
+
+      block.appendChild(img);
+      block.appendChild(label);
+      container.appendChild(block);
+    });
+  </script>
+</body>
+</html>

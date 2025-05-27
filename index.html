@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Quality Graphs</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    img { width: 48%; margin: 1%; vertical-align: top; }
+    .img-container { display: flex; flex-wrap: wrap; justify-content: space-around; }
+  </style>
+</head>
+<body>
+  <h1>Water Quality Graphs</h1>
+  <div class="img-container" id="graphs"></div>
+
+  <script>
+    // ts_id list (just the numeric parts)
+    const ts_ids = [
+      27558010,
+      26198010,
+      // Add more ts_ids here
+    ];
+
+    // Compute 7 days ago in YYYY-MM-DD
+    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+      .toISOString().split('T')[0];
+
+    // Build image URLs
+    const base = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+    const container = document.getElementById("graphs");
+
+    ts_ids.forEach((id, i) => {
+      const url = `${base}&ts_id=${id}&from=${sevenDaysAgo}`;
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = `Graph ${i + 1}`;
+      container.appendChild(img);
+    });
+  </script>
+</body>
+</html>

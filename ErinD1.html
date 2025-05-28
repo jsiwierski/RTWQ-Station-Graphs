@@ -51,23 +51,19 @@
 
   <script>
     const ts_ids = [
-      26198010,
-      26388010,
-      26363010,
-      26282010,
-      26222010,
-      26324010,
-      26247010,
-      26304010,
+      "26198010,26388010",
+      "26363010,26282010",
+      "26222010,26324010",
+      "26247010,26304010",
       26392010
     ];
 
-    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=1000&height=800&renderer=XYTsRenderer";
 
-    // Calculate the date 7 days ago in YYYY-MM-DD format
+    // Calculate the date 14 days ago in YYYY-MM-DD format
     const today = new Date();
-    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
-    const dateStr = sevenDaysAgo.toISOString().split("T")[0];
+    const fourteenDaysAgo = new Date(today.setDate(today.getDate() - 14));
+    const dateStr = fourteenDaysAgo.toISOString().split("T")[0];
 
     const container = document.getElementById("graphs");
 

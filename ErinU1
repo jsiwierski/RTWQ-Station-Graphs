@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Battery</title>
+  <title>ErinU1</title>
   <style>
     body {
       font-family: sans-serif;
@@ -32,7 +32,7 @@
   </style>
 </head>
 <body>
-  <h1>Water Quality Graphs</h1>
+  <h1>ErinU1</h1>
   <div class="img-container" id="graphs">
     <noscript>Please enable JavaScript to view the graphs.</noscript>
   </div>

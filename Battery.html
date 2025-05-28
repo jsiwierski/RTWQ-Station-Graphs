@@ -51,6 +51,7 @@
 
   <script>
     const ts_ids = [
+      "27558010,26392010,4586010,4950010,5819010,1699010,4584010,5821010,4603010,5820010, 6163010,15303010,17037010",
       27558010,
       26392010,
       4586010,
@@ -68,10 +69,10 @@
 
     const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
 
-    // Calculate the date 7 days ago in YYYY-MM-DD format
+    // Calculate the date 14 days ago in YYYY-MM-DD format
     const today = new Date();
-    const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
-    const dateStr = sevenDaysAgo.toISOString().split("T")[0];
+    const fourteenDaysAgo = new Date(today.setDate(today.getDate() - 14));
+    const dateStr = fourteenDaysAgo.toISOString().split("T")[0];
 
     const container = document.getElementById("graphs");
 

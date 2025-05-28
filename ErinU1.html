@@ -49,20 +49,17 @@
     <noscript>Please enable JavaScript to view the graphs.</noscript>
   </div>
 
-  <script>
-    const ts_ids = [
-      27364010,
-      27554010,
-      27529010,
-      27448010,
-      27388010,
-      27490010,
-      27413010,
-      27470010,
+   <script>
+    // Define groups of ts_ids exactly as you want them displayed
+    const ts_id_groups = [
+      "27364010,27554010",
+      "27529010,27448010",
+      "27388010,27490010",
+      "27413010,27470010",
       27558010
     ];
 
-    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=1000&height=800&renderer=XYTsRenderer";
 
     // Calculate the date 7 days ago in YYYY-MM-DD format
     const today = new Date();

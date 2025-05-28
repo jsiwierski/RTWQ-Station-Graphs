@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Erin U1 - Water Quality Graphs</title>
+  <title>Battery</title>
   <style>
     body {
       font-family: sans-serif;
@@ -32,24 +32,19 @@
   </style>
 </head>
 <body>
-  <h1>Erin U1 - Water Quality Graphs</h1>
+  <h1>Water Quality Graphs</h1>
   <div class="img-container" id="graphs">
     <noscript>Please enable JavaScript to view the graphs.</noscript>
   </div>
 
   <script>
     const ts_ids = [
-      27388010,
-      27364010,
-      27413010,
-      27470010,
-      27490010,
-      27529010,
-      27554010,
-      27490010
+      27388010
     ];
 
     const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=800&height=600&renderer=XYTsRenderer";
+
+    // Calculate the date 7 days ago in YYYY-MM-DD format
     const today = new Date();
     const sevenDaysAgo = new Date(today.setDate(today.getDate() - 7));
     const dateStr = sevenDaysAgo.toISOString().split("T")[0];

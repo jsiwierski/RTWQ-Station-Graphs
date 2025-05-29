@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cooksville</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .img-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .img-block {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      max-width: 420px;
+    }
+    .img-block img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cooksville</h1>
+
+  <!-- Navigation Links -->
+  <nav>
+    <a href="Battery.html">Battery Voltage</a> |
+    <a href="ErinU1.html">Erin U1</a>
+    <a href="ErinD1.html">Erin D1</a>
+    <a href="CreditHwy10N.html">CreditHwy10N</a>
+    <a href="CreditCataract.html">CreditCataract</a>
+    <a href="CreditOldDerry.html">CreditCataract</a>
+    <a href="CreditMGCC.html">CreditCataract</a>
+    <a href="Belfountain.html">CreditCataract</a>
+    <a href="Silver.html">CreditCataract</a>
+    <a href="Huttonville.html">CreditCataract</a>
+    <a href="Levi.html">CreditCataract</a>
+    <a href="Fletchers.html">CreditCataract</a>
+    <a href="Sheridan.html">CreditCataract</a>
+    <a href="Cooksville.html">CreditCataract</a>
+  </nav>
+
+  <div class="img-container" id="graphs">
+    <noscript>Please enable JavaScript to view the graphs.</noscript>
+  </div>
+
+  <script>
+    const ts_ids = [
+      "17036010,17017010",
+      "12547010,16992010",
+      "16857010,16955010",
+      "16879010,16936010",
+      17037010
+    ];
+
+    const baseUrl = "https://waterinfo.cvc.ca/KiWIS/KiWIS?datasource=0&service=kisters&type=queryServices&request=getGraph&format=png&width=1000&height=800&renderer=XYTsRenderer";
+
+    // Calculate the date 14 days ago in YYYY-MM-DD format
+    const today = new Date();
+    const fourteenDaysAgo = new Date(today.setDate(today.getDate() - 14));
+    const dateStr = fourteenDaysAgo.toISOString().split("T")[0];
+
+    const container = document.getElementById("graphs");
+
+    ts_ids.forEach(id => {
+      const imgUrl = `${baseUrl}&ts_id=${id}&from=${dateStr}`;
+      const block = document.createElement("div");
+      block.className = "img-block";
+
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = `Graph for ts_id ${id}`;
+
+      const label = document.createElement("p");
+      label.textContent = `ts_id: ${id}`;
+
+      block.appendChild(img);
+      block.appendChild(label);
+      container.appendChild(block);
+    });
+  </script>
+</body>
+</html>
